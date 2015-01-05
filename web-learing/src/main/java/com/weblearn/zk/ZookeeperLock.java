@@ -118,8 +118,9 @@ public class ZookeeperLock {
 		ZookeeperLock lock  = new ZookeeperLock("/shop");
 		lock.achieveLock("abcde");
 		System.out.println("do action");
-		lock.releaseLock();
 		CountDownLatch cd = new CountDownLatch(1);
 		cd.await();
+		lock.releaseLock();
+
 	}
 }
