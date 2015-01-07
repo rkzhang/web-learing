@@ -14,7 +14,7 @@ public class ZookeeperFactory {
 
 	private static ZooKeeper zk;
 	
-	static {
+	private static void createZk() {
 		try {
 			zk = new ZooKeeper("localhost:" + CLIENT_PORT, 
 			        CONNECTION_TIMEOUT, new Watcher() { 
@@ -30,6 +30,9 @@ public class ZookeeperFactory {
 	}
 	
 	public static ZooKeeper achieveZkClient() {
+		 if(zk == null) {
+			 createZk();
+		 }
 		 return zk;
 	}
 }
